@@ -15,7 +15,7 @@ const Collection = () => {
         if (category.includes(e.target.value)) {
             setCategory(category.filter(item => item !== e.target.value));
         } else {
-            setCategory(prev => [...prev, e.target.value]);
+            setCategory([...category, e.target.value]);
         }
     };
 
