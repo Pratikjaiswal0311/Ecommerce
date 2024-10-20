@@ -4,7 +4,7 @@ export const products=[
         name:"Women Cotton",
         description:"Bahut Badhiya",
         price:100,
-        image:['https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ3Rr7GFQ66SDz1MVWMVf47IULrAy22qyaiGw&s'],
+        image:['https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ3Rr7GFQ66SDz1MVWMVf47IULrAy22qyaiGw&s','https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRx_ltA2AHB2Oa4xGylXeBxWGvxaZ9nvD2K9Q&s','https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTyAwA1Xg5DuxKcYYMY0yLUQ61FTdlMLXZTEg&s'],
         category:"Women",
         subCategory:"TopWear",
         sizes:["S", "M", "L"],

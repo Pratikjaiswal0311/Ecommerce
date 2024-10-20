@@ -1,20 +1,97 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import { ShopContext } from '../context/ShopContext';
+import { useState } from 'react';
 
 const Product = () => {
  
-  const {products} = useContext(ShopContext);
+  const {products , currency ,Addtocart} = useContext(ShopContext);
   const {productId} = useParams();
-  
-  console.log(productId);
+  const [productData , setProductData] = useState(null);
+  const [image,setImage]= useState("");
+  const [size, setSize]= useState("");
   //use same product Id as u used in NavBAR
-  return (
-    <div>
+  const fetchProductData = async() =>{
+   products.map((item)=>{
+    if(item._id === productId){
+      setProductData(item)
+      setImage(item.image[0])
+      return null;
+    }
+   })
+  }
 
+
+  useEffect(()=>{
+    fetchProductData();
+  },[productId]);
+
+  // Jab JAB Product Id update hoga utna baar useEffectHook chalega zaur utna baar 
+  //fetchProductData chalega aur humko data milega product ka aur hum store kar denge 
+  // state me
+    return  productData?(
+    <div className='border-t-2 pt-10 transition-opacity ease-in duratrion-500 opacity-100'>
+      {/* ProdutData */}
+      <div className='flex gap-12  flex-col sm:flex-row'>
+
+        {/* Product Iamges */}
+        <div className='flex-1 flex flex-col-reverse gap-3 sm:flex-row'>
+          <div className='flex sm:flex-col overflow-x-auto sm:overflow-y-scroll justify-between sm:justify-normal sm:w-[18.7%] w-full'>
+{
+  productData.image.map((item,index)=>(
+     <img onClick={()=>setImage(item)} src={item} key={index} className='w-[24%] sm:w-full sm:mb-3 flex-shrink-0 cursor-pointer'/>
+  ))
+  
+}
+          </div>
+     
+     <div className='w-full sm:w-[80%]'>
+      <img className='w-full h-auto' src={image} />
+       
+     </div>
+        </div>
+
+        {/* <Product information> */}
+
+        <div >
+          <h1 className='font-medium text-2xl mt-2'>{productData.name}</h1>
+            <p>{currency}{productData.price}</p>
+            <p>{productData.description}</p>
+            <div className='flex flex-col gap-4 my-8'>
+              <p>SELECT Size</p>
+              <div className='flex gap-2'>
+                {productData.sizes.map((item,index)=>(
+                    <button onClick={()=>setSize(item)} className={`border py-2 px-4 bg-gray-100 ${item === size ? 'border-orange-500':''}`} key={index}>{item}</button>
+                ))}
+              </div>
+            </div>
+          <button onClick={()=>Addtocart(productData._id,size)} className='bg-black text-white px-8 py-3 text-sm active:bg-gray-700'>Add To  cart</button>
+          <hr className='mt-8 sm-4/5'></hr>
+          <div className='text-sm text-gray-500 mt-5 flex flex-col gap-1'>
+            <p>100 % Original Product</p>
+            <p>Cash On Delivery is Available</p>
+            <p>Easy Return</p>
+          </div>
+          </div>
+        </div>
+       {/* Description and Review Section */}
+       <div className='mt-20'>
+        <div className='flex'>
+          <b className='border px-5 py-3 text-sm'>Description</b>
+          <p className='border px-5 py-3 text-sm'>Reviews(122)</p>
+        </div>
+        <div className='flex flex-col gap-4 border px-6 py-6 text-sm text-gray-500'>
+          <p>This Is My Dummy Text</p>
+          <p>Dummy Text is </p>
+        </div>
+       </div>
+
+       {/* <Display Related Product > */}
+    </div>):
+    <div className='opacity-o'>
 
     </div>
-  )
+  
 }
 
 export default Product
