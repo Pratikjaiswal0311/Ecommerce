@@ -62,13 +62,13 @@ const Collection = () => {
         applyFilter();
     }, [category, subCategory, search, showSearch]);
 
-    useEffect(() => {
-        console.log(category);
-    }, [category]);
+    // useEffect(() => {
+    //     console.log(category);
+    // }, [category]);
 
-    useEffect(() => {
-        console.log(subCategory);
-    }, [subCategory]);
+    // useEffect(() => {
+    //     console.log(subCategory);
+    // }, [subCategory]);
 
     useEffect(() => {
         sortProduct();
