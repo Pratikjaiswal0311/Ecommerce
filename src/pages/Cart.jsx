@@ -8,7 +8,7 @@ const Cart = () => {
   useEffect(()=>{
     const tempData = [];
     for(const item in cartItems){
-      for( const items in cartItems[item]){
+      for( const items in cartItems[items]){
         if (cartItems [items][item]>0){
           tempData.push({
             _id:items,
